@@ -1,0 +1,30 @@
+#development version of configurations
+server:
+  port: 8083
+
+# database connections
+spring:
+  datasource:
+   url: jdbc:mysql://localhost:3306/auth_application_java
+   username: root
+   password: Aditya13325@
+
+#    jpa and hibernate configurations 
+  # hikari:
+  #   pool-name: HikariCP
+  #   maximum-pool-size: 5
+  #   connection-timeout: 10000
+  #   idle-timeout: 600000
+  #   max-lifetime: 1800000
+  #   validation-timeout: 1800000
+  #   leak-detection-threshold: 0
+  #   initialization-fail-timeout: -1
+
+  jpa:
+    hibernate:
+     ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show_sql: true
