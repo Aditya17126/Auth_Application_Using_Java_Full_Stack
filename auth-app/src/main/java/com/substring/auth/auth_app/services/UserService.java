@@ -11,7 +11,7 @@ public interface UserService {
     UserDto getUserByEmail(String email);
 
     //update user
-    UserDto updateUSer(UserDto userDto , String userId);
+    UserDto updateUser(UserDto userDto , String userId);
 
     //Delete user
     void deleteUser(String userId);
