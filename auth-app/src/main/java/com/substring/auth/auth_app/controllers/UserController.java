@@ -11,10 +11,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -26,7 +30,7 @@ public class UserController {
 
    //Create User api
   @PostMapping
-   public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+   public ResponseEntity<UserDto> createUser(@RequestBody  UserDto userDto){
        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDto));
    }
 
@@ -41,4 +45,27 @@ public class UserController {
    public ResponseEntity<UserDto> getUserByEmail(@PathVariable("emailId") String email){
      return ResponseEntity.ok(userService.getUserByEmail(email));
    }
+
+   //Delete User
+   // /api/v1/users/{userId}
+   @DeleteMapping("/{userId}")
+   public void deleteUser(@PathVariable("userId") String userId){
+      userService.deleteUser(userId);
+   }
+   
+   //Update User
+   // /api/v1/users/{userId}
+   @PutMapping("/{userId}")
+   public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto , @PathVariable("userId")String userId ){
+       return ResponseEntity.ok(userService.updateUser(userDto , userId));
+   }
+
+   // get user by id
+   // api/v1/user/{userId}
+   @GetMapping("/{userId}")
+   public ResponseEntity<UserDto> getUserById(@PathVariable("userId") String userId){
+      return ResponseEntity.ok(userService.getUserById(userId));
+   }
+   
+
 }
