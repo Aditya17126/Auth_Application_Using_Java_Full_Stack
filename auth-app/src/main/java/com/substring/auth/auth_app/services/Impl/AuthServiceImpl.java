@@ -1,5 +1,6 @@
 package com.substring.auth.auth_app.services.Impl;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.substring.auth.auth_app.dtos.UserDto;
 import com.substring.auth.auth_app.services.AuthService;
@@ -12,11 +13,14 @@ import lombok.AllArgsConstructor;
 public class AuthServiceImpl implements AuthService{
    
   private final UserService userService;
+  private final  PasswordEncoder passwordEncoder;
+  
   @Override
   public UserDto registerUser(UserDto userDto) {
     // Logic 
     //Verify email
-    // Verify Passowrd lenght , letters , 
+    // Verify Passowrd length , letters , 
+    userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
     UserDto userDto1 = userService.createUser(userDto);
 
     return userDto1;

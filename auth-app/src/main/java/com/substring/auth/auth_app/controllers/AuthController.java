@@ -22,7 +22,8 @@ public class AuthController {
   //Register User
   @PostMapping("/register")
   public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
-    System.out.println(userDto.toString());
+    System.out.println("AuthController file : " + userDto.toString());
     return ResponseEntity.status(HttpStatus.CREATED).body(authService.registerUser(userDto));
   }
+  
  }
